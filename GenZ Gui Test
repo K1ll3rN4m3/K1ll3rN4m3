@@ -1,4 +1,4 @@
--- Made By GenZ
+-- Made By 𝚂𝚑𝚒𝚘𝚙𝚊𝚘 𝚃𝚑𝚎 𝙲𝚘𝚍𝚎𝚛
 -- Gui to Lua
 -- Version: 3.
 -- Instances:
@@ -28,7 +28,7 @@ TextLabel.BackgroundTransparency = 1.000
 TextLabel.Position = UDim2.new(-0.025588274, 0, -0.0890700519, 0)
 TextLabel.Size = UDim2.new(0, 250, 0, 30)
 TextLabel.Font = Enum.Font.SciFi
-TextLabel.Text = "Project GenZ GUI"
+TextLabel.Text = "Project 𝚂𝚑𝚒𝚘𝚙𝚊𝚘 GUI"
 TextLabel.TextColor3 = Color3.fromRGB(245, 16, 16)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 12.000
@@ -80,7 +80,7 @@ end)
 
 game.StarterGui:SetCore("SendNotification", {
     Title = "Enjoy";
-    Text = "Made By GenZ"; -- what the text says (ofc)
+    Text = "Made By 𝚂𝚑𝚒𝚘𝚙𝚊𝚘."; -- what the text says (ofc)
     Duration = 5;
 })
 wait(1)
