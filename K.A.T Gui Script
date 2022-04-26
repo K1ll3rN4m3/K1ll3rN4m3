@@ -1,0 +1,193 @@
+-- Made By 𝚂𝚑𝚒𝚘𝚙𝚊𝚘 𝚃𝚑𝚎 𝙲𝚘𝚍𝚎𝚛
+-- Gui to Lua
+-- Version: 3.
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local close = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+
+Main.Name = "Main"
+Main.Parent = ScreenGui
+Main.BackgroundColor3 = Color3.fromRGB(39, 15, 245)
+Main.Position = UDim2.new(0.363293529, 0, 0.28638497, 0)
+Main.Size = UDim2.new(0, 300, 0, 154)
+Main.Style = Enum.FrameStyle.ChatRed
+Main.Active = true
+Main.Draggable = true
+
+TextLabel.Parent = Main
+TextLabel.BackgroundColor3 = Color3.fromRGB(17, 1, 1)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(-0.025588274, 0, -0.0890700519, 0)
+TextLabel.Size = UDim2.new(0, 250, 0, 30)
+TextLabel.Font = Enum.Font.SciFi
+TextLabel.Text = "Project GenZ GUI(K.A.T)"
+TextLabel.TextColor3 = Color3.fromRGB(245, 16, 16)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 12.000
+TextLabel.TextWrapped = true
+
+TextButton.Parent = Main
+TextButton.BackgroundColor3 = Color3.fromRGB(17, 1, 1)
+TextButton.Position = UDim2.new(0.136470661, 0, 0.458670378, 0)
+TextButton.Size = UDim2.new(0, 200, 0, 58)
+TextButton.Style = Enum.ButtonStyle.RobloxRoundDefaultButton
+TextButton.Font = Enum.Font.SciFi
+TextButton.Text = "Activate!"
+TextButton.TextColor3 = Color3.fromRGB(21, 235, 78)
+TextButton.TextScaled = true
+TextButton.TextSize = 15.000
+TextButton.TextWrapped = true
+TextButton.MouseButton1Down:connect(function()
+ Local = game:GetService('Players').LocalPlayer
+Char  = Local.Character
+touched,tpdback = false, false
+Local.CharacterAdded:connect(function(char)
+    if script.Disabled ~= true then
+        wait(.25)
+        loc = Char.HumanoidRootPart.Position
+        Char:MoveTo(box.Position + Vector3.new(0,.5,0))
+    end
+end)
+game:GetService('UserInputService').InputBegan:connect(function(key)
+    if key.KeyCode == Enum.KeyCode.Equals then
+        if script.Disabled ~= true then
+            script.Disabled = true
+            print'you may re-execute'
+        end
+    end
+end)
+box = Instance.new('Part',workspace)
+box.Anchored = true
+box.CanCollide = true
+box.Size = Vector3.new(10,1,10)
+box.Position = Vector3.new(0,10000,0)
+box.Touched:connect(function(part)
+    if (part.Parent.Name == Local.Name) then
+        if touched == false then
+            touched = true
+            function apply()
+                if script.Disabled ~= true then
+                    no = Char.HumanoidRootPart:Clone()
+                    wait(.25)
+                    Char.HumanoidRootPart:Destroy()
+                    no.Parent = Char
+                    Char:MoveTo(loc)
+                    touched = false
+                end end
+            if Char then
+                apply()
+            end
+        end
+    end
+end)
+repeat wait() until Char
+loc = Char.HumanoidRootPart.Position
+Char:MoveTo(box.Position + Vector3.new(0,.5,0))
+
+local Camera = game:GetService("Workspace").CurrentCamera
+local Players = game:GetService("Players")
+local LocalPlayer = game:GetService("Players").LocalPlayer
+
+local function GetClosestPlayer()
+   local ClosestPlayer = nil
+   local FarthestDistance = math.huge
+
+   for i, v in pairs(Players.GetPlayers(Players)) do
+       if v ~= LocalPlayer and v.Character and v.Character.FindFirstChild(v.Character, "HumanoidRootPart") then
+           local DistanceFromPlayer = (LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude
+
+           if DistanceFromPlayer < FarthestDistance then
+               FarthestDistance = DistanceFromPlayer
+               ClosestPlayer = v
+           end
+       end
+   end
+
+   if ClosestPlayer then
+       return ClosestPlayer
+   end
+end
+
+local Camera = game:GetService("Workspace").CurrentCamera
+local Players = game:GetService("Players")
+local LocalPlayer = game:GetService("Players").LocalPlayer
+
+local function GetClosestPlayer()
+   local ClosestPlayer = nil
+   local FarthestDistance = math.huge
+
+   for i, v in pairs(Players.GetPlayers(Players)) do
+       if v ~= LocalPlayer and v.Character and v.Character.FindFirstChild(v.Character, "HumanoidRootPart") then
+           local DistanceFromPlayer = (LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude
+
+           if DistanceFromPlayer < FarthestDistance then
+               FarthestDistance = DistanceFromPlayer
+               ClosestPlayer = v
+           end
+       end
+   end
+
+   if ClosestPlayer then
+       return ClosestPlayer
+   end
+end
+
+local GameMetaTable = getrawmetatable(game)
+local OldGameMetaTableNamecall = GameMetaTable.__namecall
+setreadonly(GameMetaTable, false)
+
+GameMetaTable.__namecall = newcclosure(function(object, ...)
+   local NamecallMethod = getnamecallmethod()
+   local Arguments = {...}
+
+   if tostring(NamecallMethod) == "FindPartOnRayWithIgnoreList" then
+       local ClosestPlayer = GetClosestPlayer()
+       
+       if ClosestPlayer and ClosestPlayer.Character then
+           Arguments[1] = Ray.new(Camera.CFrame.Position, (ClosestPlayer.Character.Head.Position - Camera.CFrame.Position).Unit * (Camera.CFrame.Position - ClosestPlayer.Character.Head.Position).Magnitude)
+       end
+   end
+
+   return OldGameMetaTableNamecall(object, unpack(Arguments))
+end)
+
+setreadonly(GameMetaTable, true)
+lib.Message.New("Activated!")
+lib.Message.New("Enjoy!")
+end)
+
+close.Name = "close"
+close.Parent = Main
+close.BackgroundColor3 = Color3.new(1, 0, 0)
+close.Position = UDim2.new(0.879518092, 6, 0, 0)
+close.Size = UDim2.new(0, 40, 0, 31)
+close.Font = Enum.Font.GothamBlack
+close.Text = "X"
+close.TextColor3 = Color3.new(0, 0, 0)
+close.TextScaled = true
+close.TextSize = 14
+close.TextWrapped = true
+close.MouseButton1Down:connect(function()
+Main.Visible = false
+end)
+
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Enjoy";
+    Text = "Made By 𝚂𝚑𝚒𝚘𝚙𝚊𝚘."; -- what the text says (ofc)
+    Duration = 5;
+})
+wait(1)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Follow My Tiktok";
+    Text = "TPH_AuraPH"; -- what the text says (ofc)
+    Duration = 5;
+})
