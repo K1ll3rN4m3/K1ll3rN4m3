@@ -56,8 +56,10 @@ getsenv(game.Players.LocalPlayer.PlayerScripts.Scripts.GUIs.Hoverboards).Equip =
 tbl.EquippedHoverboard = board
 getsenv(game.Players.LocalPlayer.PlayerScripts.Scripts.GUIs.Hoverboards).Update()
 end
+local gmppath = require(game:GetService("ReplicatedStorage").Framework.Modules.Client["5 | Gamepasses"])
+gmppath.Owns = function() return true end
 lib = require(game.ReplicatedStorage:WaitForChild('Framework'):WaitForChild('Library'))
-lib.Message.New("Hoverboards Unlocked!")
+lib.Message.New("Gamepasses Unlocked!")
 lib.Message.New("Enjoy!")
 end)
 
@@ -87,10 +89,3 @@ game.StarterGui:SetCore("SendNotification", {
     Text = "TPH_AuraPH"; -- what the text says (ofc)
     Duration = 5;
 })
-wait(2)
-local args = {
-    [1] = "Join In Project Genz DC!",
-    [2] = "All"
-}
-
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
