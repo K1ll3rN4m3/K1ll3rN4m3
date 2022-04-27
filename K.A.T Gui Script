@@ -47,7 +47,9 @@ TextButton.TextScaled = true
 TextButton.TextSize = 15.000
 TextButton.TextWrapped = true
 TextButton.MouseButton1Down:connect(function()
- Local = game:GetService('Players').LocalPlayer
+ while true do wait() game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 60 end
+Walkspeed()
+Local = game:GetService('Players').LocalPlayer
 Char  = Local.Character
 touched,tpdback = false, false
 Local.CharacterAdded:connect(function(char)
