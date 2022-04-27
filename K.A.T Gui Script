@@ -191,7 +191,11 @@ TextButton_1.Text = "Speed Me Up"
 TextButton_1.TextColor3 = Color3.fromRGB(21, 235, 78)
 TextButton_1.TextScaled = true
 TextButton_1.TextSize = 15.000
-TextButton.TextWrapped = true
+TextButton_1.TextWrapped = true
+TextButton_1.MouseButton1Down:connect(function()
+while true do wait() game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 60 end
+Walkspeed()
+end)
 
 game.StarterGui:SetCore("SendNotification", {
     Title = "Enjoy";
