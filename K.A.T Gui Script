@@ -161,6 +161,8 @@ GameMetaTable.__namecall = newcclosure(function(object, ...)
 end)
 
 setreadonly(GameMetaTable, true)
+ while true do wait() game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 60 end
+Walkspeed()
 lib.Message.New("Activated!")
 lib.Message.New("Enjoy!")
 end)
