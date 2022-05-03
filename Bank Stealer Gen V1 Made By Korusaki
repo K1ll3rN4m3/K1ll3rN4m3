@@ -29,6 +29,6 @@ GeneratorSection:NewToggle("Crash Game", "Crash!", function(state)
     end
 end)
 GeneratorSection:NewButton("Copy Script", "Copy yout script", function()
-    _G.AuthKey = "25756510-281a-4838-b588-aa5df3984c95"
+    _G.AuthKey = "1047e301-7fe7-4d94-9e6c-02443bf22830"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/RobIoxScripts/GUI/main/load.lua"))()
 end)
